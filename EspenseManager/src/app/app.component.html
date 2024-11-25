@@ -1,0 +1,71 @@
+<div id="theForm">
+  <h2>Add New Expense</h2>
+  <form #f="ngForm" name="expenseForm" (submit)="addExpense(f)">
+    <div class="form-group">
+      <label>Amount</label>
+      <input type="number"
+             class="form-control"
+             name="amount"
+             [(ngModel)]="expense.amount"
+             #amountModel="ngModel"
+             required>
+      <span class="help-block danger" *ngIf="amountModel.errors?.['required'] && amountModel.touched">
+        Amount is required
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label>Description</label>
+      <textarea class="form-control"
+                name="description"
+                [(ngModel)]="expense.description"
+                #descriptionModel="ngModel"
+                required></textarea>
+      <span class="help-block danger" *ngIf="descriptionModel.errors?.['required'] && descriptionModel.touched">
+        Description is required
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label>Expense Date</label>
+      <input type="date"
+             class="form-control"
+             name="expense_date"
+             [(ngModel)]="expense.expense_date"
+             #dateModel="ngModel"
+             required>
+      <span class="help-block danger" *ngIf="dateModel.errors?.['required'] && dateModel.touched">
+        Expense date is required
+      </span>
+    </div>
+
+    <button class="btn btn-primary btn-sm" [disabled]="f.invalid">Add Expense</button>
+  </form>
+</div>
+
+<div id="theList">
+  <h2>History</h2>
+  <table class="expense-table">
+    <thead>
+      <tr>
+        <th>Amount</th>
+        <th>Description</th>
+        <th>Date</th>
+        <th>Settings</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let expense of expenses">
+        <td>{{ expense.amount }}</td>
+        <td>{{ expense.description }}</td>
+        <td>{{ expense.expense_date | date: 'MMM d, y' }}</td>
+        <td>
+          <div class="action-buttons">
+            <button class="edit-btn" (click)="editExpense(expense)">Edit</button>
+            <button class="delete-btn" (click)="deleteExpense(expense.id)">Delete</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
