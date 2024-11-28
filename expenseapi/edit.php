@@ -41,23 +41,23 @@ try {
         }
 
         $originalFileName = basename($_FILES['image']['name']);
-        $imageName = $originalFileName; // Keep original file name
+        $imageName = $originalFileName; 
         $targetFilePath = $uploadDir . $imageName;
 
-        // Overwrite or upload new file
+       
         if (!move_uploaded_file($_FILES['image']['tmp_name'], $targetFilePath)) {
             throw new Exception('Failed to upload image.');
         }
     }
 
-    // Update query
+  
     $sql = "UPDATE `expenses` 
             SET 
                 `amount` = '$amount',
                 `description` = '$description',
                 `expense_date` = '$expense_date'";
 
-    // Add imageName only if a new file is uploaded
+ 
     if ($imageName) {
         $sql .= ", `imageName` = '$imageName'";
     }
