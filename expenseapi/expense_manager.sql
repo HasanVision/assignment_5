@@ -4,7 +4,7 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-CREATE DATABASE IF NOT EXISTS `expense_manager` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+CREATE DATABASE IF NOT EXISTS `expense_manager` DEFAULT CHARACTER SET utf8mb4 COLLATE=utf8mb4_general_ci;
 USE `expense_manager`;
 
 -- --------------------------------------------------------
@@ -18,6 +18,7 @@ CREATE TABLE `expenses` (
   `description` text DEFAULT NULL,
   `category_id` int(11) DEFAULT NULL,
   `expense_date` date DEFAULT NULL,
+  `imageName` varchar(255) DEFAULT NULL, -- New column for storing image file name
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

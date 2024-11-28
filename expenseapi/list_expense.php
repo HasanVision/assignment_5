@@ -14,7 +14,7 @@ require 'connect.php';
 try {
     $expenses = [];
     // Complete SQL query to fetch data from 'expenses' table
-    $sql = "SELECT id, user_id, amount, description, expense_date FROM expenses";
+    $sql = "SELECT id, user_id, amount, description, expense_date, imageName FROM expenses";
 
     $result = mysqli_query($con, $sql);
 
