@@ -4,6 +4,7 @@ export interface Expense {
     description: string;
     category: number;
     expense_date: string;
+    imageName?: string;
 
 }
 

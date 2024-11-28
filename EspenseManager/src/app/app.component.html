@@ -1,0 +1,151 @@
+<div id="theForm">
+  <h2>Add New Expense</h2>
+  <form #f="ngForm" name="expenseForm" (submit)="addExpense(f)">
+    <!-- Amount Input -->
+    <div class="form-group">
+      <label>Amount</label>
+      <input
+        type="number"
+        class="form-control"
+        name="amount"
+        [(ngModel)]="expense.amount"
+        #amountModel="ngModel"
+        required
+      />
+      <span class="help-block danger" *ngIf="amountModel.errors?.['required'] && amountModel.touched">
+        Amount is required
+      </span>
+    </div>
+
+    <!-- Description Input -->
+    <div class="form-group">
+      <label>Description</label>
+      <textarea
+        class="form-control"
+        name="description"
+        [(ngModel)]="expense.description"
+        #descriptionModel="ngModel"
+        required
+      ></textarea>
+      <span class="help-block danger" *ngIf="descriptionModel.errors?.['required'] && descriptionModel.touched">
+        Description is required
+      </span>
+    </div>
+
+    <!-- Expense Date Input -->
+    <div class="form-group">
+      <label>Expense Date</label>
+      <input
+        type="date"
+        class="form-control"
+        name="expense_date"
+        [(ngModel)]="expense.expense_date"
+        #dateModel="ngModel"
+        required
+      />
+      <span class="help-block danger" *ngIf="dateModel.errors?.['required'] && dateModel.touched">
+        Expense date is required
+      </span>
+    </div>
+
+    <!-- Image Upload -->
+    <div class="form-group">
+      <label>Upload Image</label>
+      <input
+        type="file"
+        class="form-control"
+        name="image"
+        (change)="onFileSelected($event)"
+      />
+    </div>
+
+    <!-- Submit Button -->
+    <button class="btn btn-primary btn-sm" [disabled]="f.invalid">Add Expense</button>
+  </form>
+</div>
+
+<div id="theList">
+  <h2>History</h2>
+  <table class="expense-table">
+    <thead>
+      <tr>
+        <th>Amount</th>
+        <th>Description</th>
+        <th>Date</th>
+        <th>Receipt</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let expense of expenses">
+        <td>{{ expense.amount }}</td>
+        <td>{{ expense.description }}</td>
+        <td>{{ expense.expense_date | date: 'MMM d, y' }}</td>
+        <td>
+          <img
+            *ngIf="expense.imageName"
+            [src]="'http://localhost/expenseapi/uploads/' + expense.imageName"
+            alt="Receipt Image"
+            width="75"
+            height="75"
+          />
+        </td>
+        <td>
+          <div class="action-buttons">
+            <button class="edit-btn" (click)="openEditModal(expense)">Edit</button>
+            <button class="delete-btn" (click)="deleteExpense(expense.id)">Delete</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Edit Expense Modal -->
+<div id="editModal" class="modal" [class.active]="isEditModalOpen">
+  <div class="modal-content">
+    <h2>Edit Expense</h2>
+    <form #editForm="ngForm" (submit)="updateExpense(editForm)">
+      <div class="form-group">
+        <label>Amount</label>
+        <input
+          type="number"
+          class="form-control"
+          name="amount"
+          [(ngModel)]="selectedExpense.amount"
+          #editAmountModel="ngModel"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Description</label>
+        <textarea
+          class="form-control"
+          name="description"
+          [(ngModel)]="selectedExpense.description"
+          required
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Expense Date</label>
+        <input
+          type="date"
+          class="form-control"
+          name="expense_date"
+          [(ngModel)]="selectedExpense.expense_date"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Change Receipt</label>
+        <input type="file" class="form-control" (change)="onFileSelected($event)" />
+      </div>
+
+      <button class="btn btn-primary">Save Changes</button>
+      <button class="btn btn-secondary" (click)="closeEditModal()" type="button">Cancel</button>
+    </form>
+  </div>
+</div>

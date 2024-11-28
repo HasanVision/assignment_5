@@ -1,0 +1,244 @@
+/* General Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9fc;
+  color: #333;
+}
+
+#theForm,
+#theList {
+  margin: 20px auto;
+  width: 90%;
+  max-width: 800px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+  padding: 25px;
+  box-sizing: border-box;
+}
+
+h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #3742fa;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* Form Styles */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-group label {
+  font-size: 1.1em;
+  color: #3742fa;
+  font-weight: 500;
+}
+
+.form-control {
+  padding: 12px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #3742fa;
+  outline: none;
+  box-shadow: 0 0 5px rgba(55, 66, 250, 0.3);
+}
+
+button {
+  padding: 12px 18px;
+  font-size: 1em;
+  background-color: #3742fa;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #2d35c4;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.help-block {
+  color: #e74c3c;
+  font-size: 0.9em;
+  margin-top: 5px;
+}
+
+/* Table Styles */
+.expense-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.expense-table th {
+  background-color: #3742fa;
+  color: #ffffff;
+  text-align: left;
+  padding: 12px;
+  font-size: 1em;
+  font-weight: 500;
+}
+
+.expense-table td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  vertical-align: middle;
+}
+
+.expense-table td img {
+  max-width: 75px;
+  max-height: 75px;
+  border-radius: 8px;
+}
+
+.expense-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.edit-btn,
+.delete-btn {
+  padding: 8px 12px;
+  font-size: 0.9em;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #ffffff;
+  transition: background-color 0.3s ease;
+}
+
+.edit-btn {
+  background-color: #ffc107;
+}
+
+.edit-btn:hover {
+  background-color: #e0a800;
+}
+
+.delete-btn {
+  background-color: #e74c3c;
+}
+
+.delete-btn:hover {
+  background-color: #c0392b;
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-content {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  padding: 25px;
+  width: 90%;
+  max-width: 500px;
+  box-sizing: border-box;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #3742fa;
+  font-weight: 600;
+}
+
+.modal-content .form-group {
+  margin-bottom: 15px;
+}
+
+.modal-content button {
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.btn-secondary {
+  background-color: #ccc;
+  color: #333;
+}
+
+.btn-secondary:hover {
+  background-color: #bbb;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #theForm,
+  #theList {
+    width: 95%;
+    padding: 20px;
+  }
+
+  h2 {
+    font-size: 1.6em;
+  }
+
+  .form-control {
+    font-size: 0.9em;
+  }
+
+  button {
+    font-size: 0.9em;
+  }
+
+  .expense-table th,
+  .expense-table td {
+    font-size: 0.9em;
+    padding: 10px;
+  }
+
+  .edit-btn,
+  .delete-btn {
+    font-size: 0.8em;
+    padding: 6px 10px;
+  }
+}
